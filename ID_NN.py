@@ -7,7 +7,7 @@ Created on Thu Jun  1 22:45:52 2017
 """
 
 ''' 
-A Neural Network for the IDENTITY and NOT operator.
+A Neural Network for the IDENTITY and NOT operators.
 
 The output is the same as the input
 
