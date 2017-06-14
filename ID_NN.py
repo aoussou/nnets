@@ -35,7 +35,6 @@ for i in range(0,nIt):
     aOld = a    
     bOld = b
     
-
     a = aOld - alpha*(aOld + bOld - 1)
     b = bOld - alpha*(aOld + 2*bOld - 1)    
     
@@ -44,7 +43,6 @@ for i in range(0,nIt):
     a = aOld - alpha*(aOld + bOld)    
     b = bOld - alpha*(aOld + 2*bOld - 1) 
     '''
-    
     
 print('a = ',a)
 print('b = ',b)
