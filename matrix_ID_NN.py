@@ -17,6 +17,9 @@ x0 = np.zeros( (2,1) )
 x0[0,0] = 0
 x0[1,0] = 1
 
+# append a vector of ones to x0 to account for the bias
+X = np.concatenate(  (np.ones((x0.shape[0],1) ),x0) ,axis=1)
+
 # initialize y
 # for the IDENTITY operator, it is  the same a x0
 yId = x0 
@@ -37,8 +40,7 @@ alpha = .01;
 # chose the IDENTITY (Y = Yid) or NOT operator (Y = Ynot)
 y = yId
 
-# 
-X = np.concatenate(  (np.ones((x0.shape[0],1) ),x0) ,axis=1)
+
 
 print('X is \n',X,'\n')
 print('y is \n',y,'\n')
