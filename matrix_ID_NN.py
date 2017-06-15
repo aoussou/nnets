@@ -1,6 +1,3 @@
-import numpy as np
-import random
-
 ''' 
 A Neural Network for the IDENTITY and NOT operator.
 
@@ -40,8 +37,6 @@ alpha = .01;
 # chose the IDENTITY (Y = Yid) or NOT operator (Y = Ynot)
 y = yId
 
-
-
 print('X is \n',X,'\n')
 print('y is \n',y,'\n')
 print('w is \n',w,'\n')
@@ -51,8 +46,7 @@ for i in range(0,10000):
     
     w = w + alpha*np.dot(X.T, y - np.dot(X,w))
     
-
 print('the solution is: \n',w)    
     
 beta = np.linalg.solve(np.dot(X.T,X),np.dot(X.T,y))
-print('Using LS normal equations we obtain beta = \n',beta)
+print('Using LS normal equations we obtain w = \n',beta)
