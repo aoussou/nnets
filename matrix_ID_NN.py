@@ -45,6 +45,8 @@ alpha = .01;
 
 # chose the IDENTITY (Y = Yid) or NOT operator (Y = Ynot)
 y = yId
+
+# append a vector of ones to x0 to account for the bias
 X = np.concatenate(  (np.ones((x0.shape[0],1) ),x0) ,axis=1)
 
 print('X is \n',X,'\n')
