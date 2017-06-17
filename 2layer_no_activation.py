@@ -31,12 +31,9 @@ print('Z is \n',Z,'\n')
 scale = .5          
 
 U = np.zeros( (3,2) )
-U[0,0] = random.uniform(-1,1)*scale
-U[1,0] = random.uniform(-1,1)*scale
-U[2,0] = random.uniform(-1,1)*scale
-U[0,1] = random.uniform(-1,1)*scale
-U[1,1] = random.uniform(-1,1)*scale
-U[2,1] = random.uniform(-1,1)*scale
+U[0,0] = random.uniform(-1,1)*scale; U[0,1] = random.uniform(-1,1)*scale
+U[1,0] = random.uniform(-1,1)*scale; U[1,1] = random.uniform(-1,1)*scale
+U[2,0] = random.uniform(-1,1)*scale; U[2,1] = random.uniform(-1,1)*scale
 
 v = np.zeros( (3,1) )
 v[0,0] = random.uniform(-1,1)*scale
