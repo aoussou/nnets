@@ -1,13 +1,11 @@
 import numpy as np
-import random
 import matplotlib.pyplot as plt
+import scipy as sp
 
 ''' 
 A 2-layer network, to model the XOR and XNOR operator.
 
-This model is actually not good, so you should just this as an exercise.
-
-A better model uses a sigmoid activation function.
+This model is actually not good, so you should just do this as an exercise.
 '''
 
 # create the input vector X
@@ -24,51 +22,53 @@ Z = np.zeros( (4,1) )
 Z[0,0] = 0
 Z[1,0] = 1
 Z[2,0] = 1
- 
+Z[3,0] = 0
 print('Z is \n',Z,'\n') 
 
 # chose random values for the weights
-scale = .5          
+scale = 1       
 
-U = np.zeros( (3,2) )
-U[0,0] = random.uniform(-1,1)*scale; U[0,1] = random.uniform(-1,1)*scale
-U[1,0] = random.uniform(-1,1)*scale; U[1,1] = random.uniform(-1,1)*scale
-U[2,0] = random.uniform(-1,1)*scale; U[2,1] = random.uniform(-1,1)*scale
+U = np.random.rand(3,2)*2*scale - scale
+v = np.random.rand(3,1)*2*scale - scale
 
-v = np.zeros( (3,1) )
-v[0,0] = random.uniform(-1,1)*scale
-v[1,0] = random.uniform(-1,1)*scale
-v[2,0] = random.uniform(-1,1)*scale 
 
 print('U initial is \n',U,'\n')
 print('v initial is \n',v,'\n')
  
 # gradient descent step
-alpha = .02;
+alpha = .2;
 
-nIt = 10000;
+nIt = 100000;
     
 # create an error matrix to plot the gradient decent results
 E = np.zeros((nIt,1))
 
 for i in range(0,nIt):
     
+    Y = np.dot(X,U)
+    A0 = sp.special.expit(Y)
+    A = np.concatenate(  (np.ones((A0.shape[0],1) ),A0) ,axis=1)
+    #print('Y is \n',Y,'\n')
+  
+    h = sp.special.expit(np.dot(A,v))
+
+    #print('Zp is \n',Zp,'\n')
+    d = Z - h
     
-    Y0 = np.dot(X,U)    
-    Y = np.concatenate(  (np.ones((Y0.shape[0],1) ),Y0) ,axis=1) 
-    Zp = np.dot(Y,v)
-    d = Z - Zp
-    U = U + alpha*np.dot(np.dot(X.T,d),v[1:].T)
-    v = v + alpha*np.dot(Y.T,d)
+    D = np.diag(d[:,0])
+    
+    U = U + alpha*np.dot(np.dot(X.T,np.dot(D,np.multiply(A0,1-A0))), np.diag(v[1:,0]))
+
+    v = v + alpha*np.dot(A.T,d)
 
     E[i] = np.dot(d.T,d)
     
 print('U final initial is \n',U,'\n')
 print('v final initial is \n',v,'\n')
 
-print('the final result is Zpred =',Zp)
 xplot = list(range(1,nIt+1))
-plt.semilogx(np.log(xplot),np.log(E), "-o", color="r")
+plt.semilogx(np.log(xplot),E, "-o", color="r")
 plt.tight_layout()
 plt.xlabel('# iterations')
 plt.ylabel('error')
+print('the final result with a .5 threshold is \n',np.round(h))

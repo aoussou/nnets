@@ -1,14 +1,22 @@
 ''' 
-A Neural Network for the IDENTITY and NOT operator.
-
-The output is the same as the input
+A Neural Network for the IDENTITY operator, i.e
+the output is the same as the input.
 
 input x | output y
 
   0     |   0
   1     |   1
-'''
+  
+or the NOT operator, i.e.
+the output is the opposite of the input.
 
+input x | output y
+
+  0     |   1
+  1     |   0
+'''
+import numpy as np
+import random
 # initialize and populate X, the input vector
 x0 = np.zeros( (2,1) )
 x0[0,0] = 0
@@ -31,7 +39,7 @@ w = np.zeros( (2,1) )
 w[0,0] = random.uniform(-1,1)*10
 w[1,0] = random.uniform(-1,1)*10
  
-# choose a gradient descent step
+# choose a gradient descent step (a.k.a learning rate)
 alpha = .01;
 
 # chose the IDENTITY (Y = Yid) or NOT operator (Y = Ynot)
@@ -49,4 +57,4 @@ for i in range(0,10000):
 print('the solution is: \n',w)    
     
 beta = np.linalg.solve(np.dot(X.T,X),np.dot(X.T,y))
-print('Using LS normal equations we obtain w = \n',beta)
+print('\nUsing LS normal equations we obtain w = \n',beta)
