@@ -48,7 +48,7 @@ alpha = .02;
 
 nIt = 10000;
     
-# create an error matrix to plot the gradient decent results
+# create an error matrix to plot the gradient descent results
 E = np.zeros((nIt,1))
 
 for i in range(0,nIt):
